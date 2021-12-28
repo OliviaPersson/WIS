@@ -5,54 +5,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WIS.Data;
 
 namespace WIS.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
-        public AppDb Db { get; set; }
+        private readonly AppDbContext myDbContext;
 
-        private readonly ILogger<UserController> _logger;
-
-        public UserController(ILogger<UserController> logger, AppDb db)
+        public UserController(AppDbContext context)
         {
-            _logger = logger;
-            Db = db;
+            myDbContext = context;
         }
 
         [HttpGet]
         public IEnumerable<User> Get()
         {
-            List<User> list = new List<User>();
             try
             {
-                var command = Db.Connection.CreateCommand();
-                command.CommandText = "SELECT * FROM user";
-                Db.Connection.Open();
-
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        string firstName = (string)reader["FirstName"];
-                        string lastName = (string)reader["LastName"];
-                        string userName = (string)reader["UserName"];
-                        string password = (string)reader["Password"];
-                        string role = (string)reader["Role"];
-                        int id = (int)reader["ID"];
-                        var user = new User { FirstName = firstName, LastName = lastName, UserName = userName, Password = password, Role = role, Id = id };
-                        list.Add(user);
-                    }
-                }
+                return (this.myDbContext.Users.ToList());
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                return (IList<User>)BadRequest(ex);
             }
-
-            return list;
         }
 
         public class UserAuthentication
@@ -65,33 +43,18 @@ namespace WIS.Controllers
         public IEnumerable<User> Authentication(UserAuthentication Auth)
         {
             List<User> list = new List<User>();
+            List<User> AuthenticatedUser = new List<User>();
+            
             try
             {
-                var command = Db.Connection.CreateCommand();
-                command.CommandText = String.Format("SELECT * FROM user WHERE  UserName = '{0}' and Password = '{1}'", Auth.UserName, Auth.Password);
-                Db.Connection.Open();
-
-                using (MySqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        string firstName = (string)reader["FirstName"];
-                        string lastName = (string)reader["LastName"];
-                        string userName = (string)reader["UserName"];
-                        string password = (string)reader["Password"];
-                        string role = (string)reader["Role"];
-                        int id = (int)reader["ID"];
-                        var user = new User { FirstName = firstName, LastName = lastName, UserName = userName, Password = password, Role = role, Id = id };
-                        list.Add(user);
-                    }
-                }
+                list = this.myDbContext.Users.ToList();
+                AuthenticatedUser.Add(list.Find(user => user.UserName.Equals(Auth.UserName) && user.Password.Equals(Auth.Password)));
+                return AuthenticatedUser;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                return (IEnumerable<User>)BadRequest(ex);
             }
-
-            return list;
         }
     }
 }

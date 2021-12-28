@@ -37,17 +37,10 @@ export class LoginComponent implements OnInit{
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        /* this.loadAllUsers();  */
     }
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
-
-/*     private loadAllUsers() {
-        this.userService.getAll().pipe(first()).subscribe(users => {
-            console.log(users);
-        });
-    } */
 
     onSubmit() {
         this.submitted = true;
@@ -62,8 +55,12 @@ export class LoginComponent implements OnInit{
             .pipe(first())
             .subscribe(
                 data => {
-                     this.router.navigate(['/home']); 
-                    
+                    if(data[0] != null){
+                        this.router.navigate(['/home']); 
+                    } else {
+                        this.alertService.error("Incorrect login credentials");
+                        this.loading = false;
+                    }
                 },
                 error => {
                     this.alertService.error(error);
