@@ -7,9 +7,11 @@ namespace WIS
 {
     public class Product
     {
-        public string ProductName { get; set; }
-        public string OrderNumber { get; set; }
-        public int Quantity { get; set; }
         public int Id { get; set; }
+        public string ProductName { get; set; }
+        public string ProductCode { get; set; }
+        public int Quantity { get; set; }
+        public string Description { get; set; }
+        public DateTime OrderDate { get; set; }
     }
 }
