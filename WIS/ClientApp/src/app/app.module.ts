@@ -13,6 +13,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './alert/alert.component';
 import { AuthGuardService } from './guard/auth-guard.service';
+import { ProductListComponent } from './Products/product-list.component';
+import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AuthGuardService } from './guard/auth-guard.service';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    ProductListComponent,
+    ConvertToSpacesPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,6 +36,7 @@ import { AuthGuardService } from './guard/auth-guard.service';
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
+      { path: 'products', component: ProductListComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
