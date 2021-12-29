@@ -61,10 +61,6 @@ export class LoginComponent implements OnInit{
                         this.alertService.error("Incorrect login credentials");
                         this.loading = false;
                     }
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
                 });
     }
 
