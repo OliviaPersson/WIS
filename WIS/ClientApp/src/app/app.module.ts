@@ -12,6 +12,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './alert/alert.component';
+import { AuthGuardService } from './guard/auth-guard.service';
+import { ProductListComponent } from './Products/product-list.component';
+import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationService } from './services/registration.service';
 
@@ -25,6 +28,8 @@ import { RegistrationService } from './services/registration.service';
     FetchDataComponent,
     LoginComponent,
     AlertComponent,
+    ProductListComponent,
+    ConvertToSpacesPipe,
     RegistrationComponent
   ],
   imports: [
@@ -34,13 +39,14 @@ import { RegistrationService } from './services/registration.service';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'home', component: HomeComponent, pathMatch: 'full' },
+      { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
+      { path: 'products', component: ProductListComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'counter', component: CounterComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [RegistrationService],
+  providers: [AuthGuardService, RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
