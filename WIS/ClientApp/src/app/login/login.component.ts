@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit{
             .subscribe(
                 data => {
                     if(data[0] != null){
-                        this.router.navigate(['/home']); 
+                        this.router.navigate(['/products']); 
                     } else {
                         this.alertService.error("Incorrect login credentials");
                         this.loading = false;
