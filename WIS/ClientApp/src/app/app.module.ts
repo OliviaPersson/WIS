@@ -12,6 +12,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './alert/alert.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationService } from './services/registration.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { AlertComponent } from './alert/alert.component';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,10 +36,11 @@ import { AlertComponent } from './alert/alert.component';
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
+      { path: 'registration', component: RegistrationComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
