@@ -15,6 +15,9 @@ import { AlertComponent } from './alert/alert.component';
 import { AuthGuardService } from './guard/auth-guard.service';
 import { ProductListComponent } from './Products/product-list.component';
 import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
+import { RegistrationComponent } from './registration/registration.component';
+import { RegistrationService } from './services/registration.service';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
     LoginComponent,
     AlertComponent,
     ProductListComponent,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,10 +42,11 @@ import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
       { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'products', component: ProductListComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'counter', component: CounterComponent },
+      { path: 'registration', component: RegistrationComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [AuthGuardService],
+  providers: [AuthGuardService, RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

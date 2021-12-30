@@ -9,10 +9,10 @@ export class UserService {
         return this.http.get<any[]>(`/user`);
     }
 
-/*     register(user: any) {
-        return this.http.post(`/users/register`, user);
+     register(user: any) {
+        return this.http.post(`/user`, user);
     }
-
+    /*
     delete(id: number) {
         return this.http.delete(`/users/${id}`);
     } */
