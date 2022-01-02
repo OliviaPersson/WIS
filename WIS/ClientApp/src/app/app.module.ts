@@ -15,6 +15,7 @@ import { AlertComponent } from './alert/alert.component';
 import { AuthGuardService } from './guard/auth-guard.service';
 import { ProductListComponent } from './Products/product-list.component';
 import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
+import { StockStatusFiltering } from './Products/stock-status-filtering.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
     LoginComponent,
     AlertComponent,
     ProductListComponent,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    StockStatusFiltering
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
