@@ -17,6 +17,7 @@ import { ProductListComponent } from './Products/product-list.component';
 import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationService } from './services/registration.service';
+import { StockStatusFiltering } from './Products/stock-status-filtering.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { RegistrationService } from './services/registration.service';
     AlertComponent,
     ProductListComponent,
     ConvertToSpacesPipe,
-    RegistrationComponent
+    RegistrationComponent,
+    StockStatusFiltering
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

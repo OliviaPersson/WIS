@@ -14,6 +14,8 @@ export class ProductListComponent implements OnInit, OnDestroy{
     showImage: boolean = false;
     errorMessage: string = '';
     sub!: Subscription;
+    checkboxesDisabled: boolean;
+    seachboxDisabled: boolean;
 
     private _listFilter: string = '';
 
@@ -55,5 +57,15 @@ export class ProductListComponent implements OnInit, OnDestroy{
 
     onRatingClicked(message: string): void {
         this.pageTitle = 'Product List: ' + message;
+    }
+
+    onCheckboxClicked(array: IProduct[]): void {
+        if(array.length == 0){
+            this.filteredProducts = this.products;
+            this.seachboxDisabled = false;
+        } else {
+            this.filteredProducts = array;
+            this.seachboxDisabled = true;
+        }
     }
 }
