@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-
 import { AlertService } from '../services/alert.service';
-import { AuthenticationService } from '../services/authentication.service';
 import { RegistrationService } from '../services/registration.service';
-import { UserService } from '../services/user.service';
 
 @Component({
 selector: 'app-registration',
@@ -20,11 +16,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     public service: RegistrationService,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router, 
-    private userService: UserService,
-    private authenticationService: AuthenticationService,
     private alertService: AlertService,
   ){
   }
@@ -52,10 +45,12 @@ get f() { return this.service.formModel.controls; }
     .pipe(first())
     .subscribe({
       next: () => {
-          this.alertService.success('Registration successful', true);
-          this.loading = false;
           this.service.formModel.reset();
-          this.router.navigate(['../registration'], { relativeTo: this.route });
+          this.submitted = false;
+          this.loading = false;
+          this.alertService.success('Registration successful', true);        
+          this.router.navigate(['../registration']);
+          
       },
       error: error => {
           this.alertService.error(error);

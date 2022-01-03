@@ -4,7 +4,11 @@ import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor(public auth: AuthenticationService, public router: Router) {}
+  
+  constructor(
+    public auth: AuthenticationService,
+    public router: Router) {}
+
   canActivate(): boolean {
     if (!this.auth.currentUserValue || this.auth.currentUserValue[0] == null) {
       this.router.navigate(['']);
