@@ -73,7 +73,7 @@ namespace WIS.Controllers
 
             if (AnyByName(userEntities.UserName))
             {
-                throw new ArgumentException("The username already exist");
+                return BadRequest("The username already exist");
             }
             else
             {

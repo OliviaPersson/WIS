@@ -5,7 +5,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 
 export class RegistrationService {
-    
     constructor(private fb:FormBuilder, private http:HttpClient){}
     
     formModel = this.fb.group({

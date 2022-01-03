@@ -1,3 +1,4 @@
+<app-nav-menu></app-nav-menu>
 <h2>User Registration</h2>
 <form [formGroup]="service.formModel" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -34,6 +35,6 @@
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Add User
         </button>
-        <a routerLink="/" class="btn btn-link">Cancel</a>
+        <a routerLink="/products" class="btn btn-link">Cancel</a>
     </div>
 </form>
