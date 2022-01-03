@@ -7,7 +7,11 @@
           <div class='col-md-2'>Filter by:</div>
           <div class='col-md-4'>
             <input type='text' 
-                    [(ngModel)]='listFilter'/>
+                    [(ngModel)]='listFilter'[disabled]="seachboxDisabled"/>
+          </div>
+          <div>
+            <stock-filtering [products]="products" [checkboxesDisabled]="listFilter.length > 0"
+            (checkboxClicked)='onCheckboxClicked($event)'></stock-filtering>
           </div>
         </div>
         <div class='row'>
@@ -19,12 +23,6 @@
             <table class='table' *ngIf='products.length'>
               <thead>
                 <tr>
-<!--                   <th>
-                     <button class='btn btn-primary'
-                        (click)='toggleImage()'>     
-                        {{showImage ? 'Hide' : 'Show'}} Image  
-                    </button> 
-                  </th> -->
                   <th>Product</th>
                   <th>Code</th>
                   <th>Quantity</th>
@@ -35,13 +33,6 @@
               </thead>
               <tbody>
                  <tr *ngFor='let product of filteredProducts'>
-<!--                     <td>
-                        <img *ngIf='showImage'
-                                [src]='product.imageUrl'
-                                [title]='product.productName'
-                                [style.width.px]='imageWidth'
-                                [style.margin.px]='imageMargin'>
-                    </td> -->
                     <td>{{product.productName}}</td>
                     <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td>
                     <td>{{product.quantity}}</td>
@@ -65,12 +56,6 @@
                             [style.margin.px]='imageMargin'> 
                             Many in stock
                     </td> 
-                    <!-- <td>{{product.price | currency:'USD':'symbol':'1.2-2'}}</td> -->
-<!--                     <td>
-                        <pm-star [rating]='product.starRating'
-                        (ratingClicked)='onRatingClicked($event)'>
-                        </pm-star> 
-                    </td> -->
                 </tr>
               </tbody>
             </table>
