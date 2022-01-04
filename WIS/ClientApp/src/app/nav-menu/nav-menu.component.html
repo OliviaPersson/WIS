@@ -32,8 +32,10 @@
               >Registration</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/']"
+          <li class="nav-item" 
+              [routerLinkActive]="['link-active']" 
+              (click)="onSubmit()">
+            <a class="nav-link text-dark"
               >LogOut</a
             >
           </li>

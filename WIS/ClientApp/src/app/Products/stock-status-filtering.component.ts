@@ -27,7 +27,6 @@ export class StockStatusFiltering implements OnChanges{
 
     Checked(type: string){
         let changed: boolean = false;
-        console.log(this.products);
 
         if(type == "outOfStockChecked" && !this.outOfStockChecked && !changed){
             this.outOfStockChecked = true;
@@ -81,7 +80,6 @@ export class StockStatusFiltering implements OnChanges{
 
             })
         }
-        console.log(this.SelectedProducts);
         this.checkboxClicked.emit(this.SelectedProducts);
     }
 }
