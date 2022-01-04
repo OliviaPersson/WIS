@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit{
     loading = false;
     submitted = false;
     returnUrl: string;
-    
+    imageW: number = 800;
+    imageM: number = 2;
 
     constructor(
         private formBuilder: FormBuilder,

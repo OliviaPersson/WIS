@@ -14,3 +14,14 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+div.form-group.required>label:first-child:after{
+  content: '*';
+  color: #dc3545;
+  padding-left: 5px;
+}
+
+div.form-group.required>label:first-child:after{
+  content: '*';
+  color: #dc3545;
+  padding-left: 5px;
+}

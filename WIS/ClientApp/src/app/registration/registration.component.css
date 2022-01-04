@@ -1,0 +1,10 @@
+.size {
+    height: 200px;
+    width: 670px;
+  }
+  .center{
+    display: flex;
+    justify-content: center;
+    
+    }
+    
