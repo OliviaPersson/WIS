@@ -50,7 +50,7 @@ export class StockStatusFiltering implements OnChanges{
             this.manyInStockChecked = true;
             changed = true;
             this.products.forEach(product => {
-                if(product.quantity >= 100){
+                if(product.quantity >= 30){
                     this.SelectedProducts.push(product);
                 }
             });
@@ -75,7 +75,7 @@ export class StockStatusFiltering implements OnChanges{
             this.manyInStockChecked = false;
             changed = true;
             this.SelectedProducts = this.SelectedProducts.filter(product => {
-                let condition = product.quantity >= 100;
+                let condition = product.quantity >= 30;
                 return !condition;
 
             })
