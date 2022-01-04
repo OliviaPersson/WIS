@@ -27,7 +27,7 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/products']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isAdmin">
             <a class="nav-link text-dark" [routerLink]="['/registration']"
               >Registration</a
             >
