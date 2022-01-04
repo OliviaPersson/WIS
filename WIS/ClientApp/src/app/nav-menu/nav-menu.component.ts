@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -10,9 +11,8 @@ export class NavMenuComponent implements OnInit{
   isExpanded = false;
   isAdmin: boolean;
 
-  constructor(private authenticationService: AuthenticationService){
-
-  }
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router){}
 
   ngOnInit() {
     if(this.authenticationService.currentUserValue[0].role == "Admin"){
@@ -20,6 +20,11 @@ export class NavMenuComponent implements OnInit{
     } else {
       this.isAdmin = false;
     }
+  }
+
+  onSubmit() {
+    this.authenticationService.logout()
+    this.router.navigate(['/']); 
   }
 
   collapse() {
