@@ -27,13 +27,15 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/products']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isAdmin">
             <a class="nav-link text-dark" [routerLink]="['/registration']"
               >Registration</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/']"
+          <li class="nav-item" 
+              [routerLinkActive]="['link-active']" 
+              (click)="onSubmit()">
+            <a class="nav-link text-dark"
               >LogOut</a
             >
           </li>

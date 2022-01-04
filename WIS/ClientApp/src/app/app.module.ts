@@ -18,6 +18,7 @@ import { ConvertToSpacesPipe } from './Products/convert-to-spaces.pipe';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationService } from './services/registration.service';
 import { StockStatusFiltering } from './Products/stock-status-filtering.component';
+import { AuthGuardAdminService } from './guard/auth-guard-admin.service';
 
 
 @NgModule({
@@ -44,11 +45,11 @@ import { StockStatusFiltering } from './Products/stock-status-filtering.componen
       { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'products', component: ProductListComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'counter', component: CounterComponent },
-      { path: 'registration', component: RegistrationComponent },
+      { path: 'registration', component: RegistrationComponent, canActivate: [AuthGuardAdminService, AuthGuardService]},
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [AuthGuardService, RegistrationService],
+  providers: [AuthGuardService, RegistrationService, AuthGuardAdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
