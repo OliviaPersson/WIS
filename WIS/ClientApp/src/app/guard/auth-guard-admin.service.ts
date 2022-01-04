@@ -3,15 +3,15 @@ import { Router, CanActivate } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class AuthGuardAdminService implements CanActivate {
   
   constructor(
     public auth: AuthenticationService,
     public router: Router) {}
 
   canActivate(): boolean {
-    if (!this.auth.currentUserValue || this.auth.currentUserValue[0] == null) {
-      this.router.navigate(['']);
+    if (this.auth.currentUserValue[0].role != "Admin") {
+      this.router.navigate(['/products']);
       return false;
     }
     return true;
