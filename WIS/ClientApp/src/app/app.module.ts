@@ -19,6 +19,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationService } from './services/registration.service';
 import { StockStatusFiltering } from './Products/stock-status-filtering.component';
 import { AuthGuardAdminService } from './guard/auth-guard-admin.service';
+import { OrderListComponent } from './order-list/order-list.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AuthGuardAdminService } from './guard/auth-guard-admin.service';
     ProductListComponent,
     ConvertToSpacesPipe,
     RegistrationComponent,
-    StockStatusFiltering
+    StockStatusFiltering,
+    OrderListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -44,6 +46,7 @@ import { AuthGuardAdminService } from './guard/auth-guard-admin.service';
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'home', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'products', component: ProductListComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
+      { path: 'orderlist', component: OrderListComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'counter', component: CounterComponent },
       { path: 'registration', component: RegistrationComponent, canActivate: [AuthGuardAdminService, AuthGuardService]},
       { path: 'fetch-data', component: FetchDataComponent },
