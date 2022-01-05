@@ -1,0 +1,12 @@
+.remove {
+    cursor: pointer;
+}
+
+button {
+    float: right;
+    margin-top: 20px;
+}
+
+.order-status-input{
+    width: 80px;
+}

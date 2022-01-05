@@ -11,6 +11,7 @@ namespace WIS
         public string ProductName { get; set; }
         public string ProductCode { get; set; }
         public int Quantity { get; set; }
+        public int OrderAmount { get; set; }
         public string Description { get; set; }
         public DateTime OrderDate { get; set; }
     }

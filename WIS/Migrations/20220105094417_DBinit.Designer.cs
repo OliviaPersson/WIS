@@ -9,8 +9,8 @@ using WIS.Data;
 namespace WIS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211228144728_DBInit")]
-    partial class DBInit
+    [Migration("20220105094417_DBinit")]
+    partial class DBinit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,9 @@ namespace WIS.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
+
+                    b.Property<int>("OrderAmount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime(6)");
