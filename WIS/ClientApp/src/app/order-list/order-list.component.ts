@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { pipe, Subscription } from "rxjs";
 import { IProduct } from "../Products/product";
 import { ProductService } from "../Products/product.service";
+import { AlertService } from "../services/alert.service";
 import { AuthenticationService } from "../services/authentication.service";
 
 @Component({
@@ -18,12 +19,15 @@ export class OrderListComponent implements OnInit{
     errorMessage: string = '';
     pageTitle: string = 'Order List';
     isAdmin: boolean;
+    orderSuccess: boolean = false;
+    loading = false;
 
     products: IProduct[] = [];
     filteredProducts: IProduct[] = [];
     
     constructor(private productService: ProductService,
-                private authenticationService: AuthenticationService) {}
+                private authenticationService: AuthenticationService,
+                private alertService: AlertService) {}
 
     ngOnInit(): void {
         this.sub = this.productService.getProducts().subscribe({
@@ -55,7 +59,20 @@ export class OrderListComponent implements OnInit{
         })
     }
 
-    placeOrder(){
+    placeOrder(filteredProducts){
+        console.log(filteredProducts);
+        this.loading = true;
+        filteredProducts.forEach(product => {
+            let order = {
+                Id: product.id,
+                OrderAmount: product.orderAmount * 1
+            }
+            this.productService.orderProducts(order)
+            .subscribe()
+        });
+        this.loading = false;
+        //this.alertService.success('Order successful', true);
+
         
     }
 }
