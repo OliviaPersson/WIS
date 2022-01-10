@@ -9,8 +9,8 @@ using WIS.Data;
 namespace WIS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220105094417_DBinit")]
-    partial class DBinit
+    [Migration("20220105204935_DBInit")]
+    partial class DBInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
