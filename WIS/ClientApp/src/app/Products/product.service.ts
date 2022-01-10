@@ -15,4 +15,9 @@ export class ProductService {
     getProducts() {
         return this.http.get<any[]>(`/product`);
     }
+
+    orderProducts(orderProduct) {
+        console.log(orderProduct);
+        return this.http.post<any>('/Product/Order', orderProduct);
+    }
 }

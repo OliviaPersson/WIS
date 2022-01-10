@@ -52,7 +52,7 @@
     </div>
 </div>
 <div class="form-group" *ngIf="isAdmin">
-    <button [disabled]="loading" class="btn btn-primary">
+    <button [disabled]="loading" class="btn btn-primary" (click)="placeOrder(filteredProducts)">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         Place Order
     </button>

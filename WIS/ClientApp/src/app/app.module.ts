@@ -20,7 +20,7 @@ import { RegistrationService } from './services/registration.service';
 import { StockStatusFiltering } from './Products/stock-status-filtering.component';
 import { AuthGuardAdminService } from './guard/auth-guard-admin.service';
 import { OrderListComponent } from './order-list/order-list.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog'; 
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -46,7 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDialogModule,
+    MatDialogModule, 
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
