@@ -18,6 +18,6 @@ export class ProductService {
 
     orderProducts(orderProduct) {
         console.log(orderProduct);
-        return this.http.post<any>('/Product/Order', orderProduct);
+        return this.http.post<any[]>('/Product/Order', orderProduct);
     }
 }

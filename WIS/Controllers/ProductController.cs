@@ -39,24 +39,27 @@ namespace WIS.Controllers
         }
 
         [HttpPost("Order")]
-        public IActionResult OrderProducts(OrderProduct order)
+        public IActionResult OrderProducts(OrderProduct[] order)
         {
+
             List<Product> list = new List<Product>();
+            Product product;
             try
             {
                 list = this.myDbContext.Products.ToList();
-                Product product = list.Find(product => product.Id.Equals(order.Id));
-                product.OrderAmount = order.OrderAmount;
-                myDbContext.Update(product);
-                myDbContext.SaveChanges();
+                foreach (OrderProduct o in order)
+                {
+                    product = list.Find(product => product.Id.Equals(o.Id));
+                    product.OrderAmount = o.OrderAmount;
+                    myDbContext.Update(product);
+                    myDbContext.SaveChanges();
+                }
                 return Ok();
-
             }
             catch (Exception ex)
             {
                 return BadRequest(ex);
             }
-
         }
     }
 }
