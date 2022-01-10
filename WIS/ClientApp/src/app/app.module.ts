@@ -20,6 +20,9 @@ import { RegistrationService } from './services/registration.service';
 import { StockStatusFiltering } from './Products/stock-status-filtering.component';
 import { AuthGuardAdminService } from './guard/auth-guard-admin.service';
 import { OrderListComponent } from './order-list/order-list.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -35,12 +38,15 @@ import { OrderListComponent } from './order-list/order-list.component';
     ConvertToSpacesPipe,
     RegistrationComponent,
     StockStatusFiltering,
-    OrderListComponent
+    OrderListComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -53,6 +59,9 @@ import { OrderListComponent } from './order-list/order-list.component';
     ])
   ],
   providers: [AuthGuardService, RegistrationService, AuthGuardAdminService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ConfirmationDialogComponent
+  ]
 })
 export class AppModule { }
