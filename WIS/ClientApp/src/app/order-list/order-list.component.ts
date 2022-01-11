@@ -6,6 +6,7 @@ import { AlertService } from "../services/alert.service";
 import { AuthenticationService } from "../services/authentication.service";
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,10 +33,11 @@ export class OrderListComponent implements OnInit{
     constructor(private productService: ProductService,
                 private authenticationService: AuthenticationService,
                 private dialog: MatDialog,
-                private alertService: AlertService) {}
+                private alertService: AlertService,
+                private router: Router) {}
 
     ngOnInit(): void {
-        this.alertService.clear();
+        //this.alertService.clear();
         this.sub = this.productService.getProducts().subscribe({
             next: products => {
                 this.products = products;
@@ -94,6 +96,7 @@ export class OrderListComponent implements OnInit{
                 this.productService.orderProducts(this.order)
                 .subscribe({
                     next: () => {
+                        this.refresh();
                         this.alertService.success('Order successful', true);
                         this.loading = false;
                     },
@@ -107,4 +110,8 @@ export class OrderListComponent implements OnInit{
             }
           });
     }  
+
+    refresh() {
+        window.location.reload();
+    }
 }
