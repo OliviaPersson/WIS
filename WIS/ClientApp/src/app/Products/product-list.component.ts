@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { IProduct } from "./product";
 import { ProductService } from "./product.service";
+import { AlertService } from "../services/alert.service";
 
 @Component({
     templateUrl: './product-list.component.html',
@@ -30,7 +31,8 @@ export class ProductListComponent implements OnInit, OnDestroy{
     filteredProducts: IProduct[] = [];
     products: IProduct[] = [];
 
-    constructor(private productService: ProductService) {}
+    constructor(private productService: ProductService,
+                private alertService: AlertService) {}
 
     performFilter(filterBy: string): IProduct[] {
         filterBy = filterBy.toLocaleLowerCase();
@@ -42,6 +44,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
     }
 
     ngOnInit(): void {
+        this.alertService.clear();
         this.sub = this.productService.getProducts().subscribe({
             next: products => {
                 this.products = products;

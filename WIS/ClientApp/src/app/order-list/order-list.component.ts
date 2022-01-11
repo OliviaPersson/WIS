@@ -35,6 +35,7 @@ export class OrderListComponent implements OnInit{
                 private alertService: AlertService) {}
 
     ngOnInit(): void {
+        this.alertService.clear();
         this.sub = this.productService.getProducts().subscribe({
             next: products => {
                 this.products = products;
