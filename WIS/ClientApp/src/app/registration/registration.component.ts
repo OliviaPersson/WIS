@@ -32,6 +32,7 @@ export class RegistrationComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.alertService.clear();
     this.service.formModel.reset();
   }
 

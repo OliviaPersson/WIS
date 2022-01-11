@@ -35,6 +35,7 @@ export class OrderListComponent implements OnInit{
                 private alertService: AlertService) {}
 
     ngOnInit(): void {
+        this.alertService.clear();
         this.sub = this.productService.getProducts().subscribe({
             next: products => {
                 this.products = products;
@@ -75,25 +76,35 @@ export class OrderListComponent implements OnInit{
     }
 
     placeOrder(filteredProducts){
-        this.loading = true;
-        filteredProducts.forEach(product => {
-            this.order.push({
-                "Id":  product.id,
-                "OrderAmount": product.orderAmount * 1
-            })
-        });
-        this.productService.orderProducts(this.order)
-        .subscribe({
-            next: () => {
-                this.alertService.success('Order successful', true);
-                this.loading = false;
-            },
-            error: error => {
-                this.alertService.error('Something went wrong with your order');
-                this.loading = false;
+        const confirmDialog = this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+              title: 'Confirm Place Order',
+              message: 'Are you sure you want to place a new order' 
             }
           });
-        this.order = [];
-        this.loading = false;  
+          confirmDialog.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.loading = true;
+                filteredProducts.forEach(product => {
+                    this.order.push({
+                        "Id":  product.id,
+                        "OrderAmount": product.orderAmount * 1
+                    })
+                });
+                this.productService.orderProducts(this.order)
+                .subscribe({
+                    next: () => {
+                        this.alertService.success('Order successful', true);
+                        this.loading = false;
+                    },
+                    error: error => {
+                        this.alertService.error('Something went wrong with your order');
+                        this.loading = false;
+                    }
+                });
+                this.order = [];
+                this.loading = false;  
+            }
+          });
     }  
 }

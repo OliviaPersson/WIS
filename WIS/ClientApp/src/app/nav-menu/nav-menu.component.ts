@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { AuthenticationService } from '../services/authentication.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-nav-menu',
@@ -12,7 +14,8 @@ export class NavMenuComponent implements OnInit{
   isAdmin: boolean;
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router){}
+              private router: Router,
+              private dialog: MatDialog){}
 
   ngOnInit() {
     if(this.authenticationService.currentUserValue[0].role == "Admin"){
@@ -23,8 +26,18 @@ export class NavMenuComponent implements OnInit{
   }
 
   onSubmit() {
-    this.authenticationService.logout()
-    this.router.navigate(['/']); 
+    const confirmDialog = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: 'Confirm Log Out',
+        message: 'Are you sure you want to log out' 
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.authenticationService.logout()
+        this.router.navigate(['/']); 
+      }
+    });
   }
 
   collapse() {
