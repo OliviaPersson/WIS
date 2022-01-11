@@ -22,10 +22,9 @@ export class OrderListComponent implements OnInit{
     errorMessage: string = '';
     pageTitle: string = 'Order List';
     isAdmin: boolean;
-    orderSuccess: boolean = false;
     loading = false;
 
-    order: { Id: any, OrderAmount: number } [] = [];  
+    order: { Id: number, OrderAmount: number } [] = [];  
 
     products: IProduct[] = [];
     filteredProducts: IProduct[] = [];
@@ -76,18 +75,6 @@ export class OrderListComponent implements OnInit{
     }
 
     placeOrder(filteredProducts){
-        //console.log(filteredProducts);
-/*         this.loading = true;
-        filteredProducts.forEach(product => {
-            let order = {
-                Id: product.id,
-                OrderAmount: product.orderAmount * 1
-            }
-            this.productService.orderProducts(order)
-            .subscribe()
-        });
-        this.loading = false; */
-
         this.loading = true;
         filteredProducts.forEach(product => {
             this.order.push({
@@ -95,7 +82,6 @@ export class OrderListComponent implements OnInit{
                 "OrderAmount": product.orderAmount * 1
             })
         });
-        console.log(this.order);
         this.productService.orderProducts(this.order)
         .subscribe({
             next: () => {
