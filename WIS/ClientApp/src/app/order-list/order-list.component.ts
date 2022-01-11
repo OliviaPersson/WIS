@@ -22,8 +22,9 @@ export class OrderListComponent implements OnInit{
     errorMessage: string = '';
     pageTitle: string = 'Order List';
     isAdmin: boolean;
-    orderSuccess: boolean = false;
     loading = false;
+
+    order: { Id: number, OrderAmount: number } [] = [];  
 
     products: IProduct[] = [];
     filteredProducts: IProduct[] = [];
@@ -74,19 +75,25 @@ export class OrderListComponent implements OnInit{
     }
 
     placeOrder(filteredProducts){
-        console.log(filteredProducts);
         this.loading = true;
         filteredProducts.forEach(product => {
-            let order = {
-                Id: product.id,
-                OrderAmount: product.orderAmount * 1
-            }
-            this.productService.orderProducts(order)
-            .subscribe()
+            this.order.push({
+                "Id":  product.id,
+                "OrderAmount": product.orderAmount * 1
+            })
         });
-        this.loading = false;
-        //this.alertService.success('Order successful', true);
-
-        
+        this.productService.orderProducts(this.order)
+        .subscribe({
+            next: () => {
+                this.alertService.success('Order successful', true);
+                this.loading = false;
+            },
+            error: error => {
+                this.alertService.error('Something went wrong with your order');
+                this.loading = false;
+            }
+          });
+        this.order = [];
+        this.loading = false;  
     }  
 }
