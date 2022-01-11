@@ -10,3 +10,7 @@ button {
 .order-status-input{
     width: 80px;
 }
+
+thead {
+    color: #337AB7;
+}
