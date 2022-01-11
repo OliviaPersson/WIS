@@ -50,7 +50,9 @@ namespace WIS.Controllers
                 foreach (OrderProduct o in order)
                 {
                     product = list.Find(product => product.Id.Equals(o.Id));
-                    product.OrderAmount = o.OrderAmount;
+                    product.Quantity = o.OrderAmount + product.Quantity;
+                    product.OrderAmount = 0;
+                    product.OrderDate = DateTime.Now;
                     myDbContext.Update(product);
                     myDbContext.SaveChanges();
                 }
