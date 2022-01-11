@@ -37,7 +37,7 @@ export class OrderListComponent implements OnInit{
                 private router: Router) {}
 
     ngOnInit(): void {
-        //this.alertService.clear();
+        this.alertService.clear();
         this.sub = this.productService.getProducts().subscribe({
             next: products => {
                 this.products = products;
