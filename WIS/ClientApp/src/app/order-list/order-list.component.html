@@ -23,7 +23,7 @@
                     <td>{{product.productName}}</td>
                     <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td> 
                     <td *ngIf="isAdmin">
-                        <input class="order-status-input"type="text" [(ngModel)]="product.orderAmount">
+                        <input class="order-status-input" type="number" [(ngModel)]="product.orderAmount">
                     </td>
                     <td>{{product.quantity}}</td>
                     <td>{{product.description}}</td>
