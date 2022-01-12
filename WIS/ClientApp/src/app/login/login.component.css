@@ -1,4 +1,11 @@
-.img-size-login {
-    height: 200px;
-    width: 970px;
-  }
+/* .img-size-login {
+  height: 200px;
+  width: 970px;
+}  */
+
+img {
+  width: 100%;
+  height: auto;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}  
