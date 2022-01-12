@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -62,10 +63,15 @@ get f() { return this.service.formModel.controls; }
           this.service.formModel.reset();
           this.submitted = false;
           this.router.navigate(['../registration'], { relativeTo: this.route });
-      },
+      }, 
       error: error => {
-          this.alertService.error(error);
-          this.loading = false;
+        if (error.status === 400) {
+          this.alertService.error("Username already exist, please try again.");
+        }
+        else {
+          this.alertService.error("An unexpected error occurred, please try again.");
+        }        
+        this.loading = false;
       }
     });
   }    

@@ -53,23 +53,10 @@ namespace WIS.Controllers
         [HttpPost("Registration")]
         public IActionResult Registration(User userEntities)
         {
-            //var user = new User()
-            //{
-            //    FirstName = userEntities.FirstName,
-            //    LastName = userEntities.LastName,
-            //    UserName = userEntities.UserName,
-            //    Password = userEntities.Password,
-            //    Role = userEntities.Role
-            //};
-
-
-            List<User> list = new List<User>();
-            list = this.myDbContext.Users.ToList();
-
             // Creates the database if not exists
             myDbContext.Database.EnsureCreated();
 
-            if (userEntities == null) throw new ArgumentException("Data empty");
+            if (userEntities == null) return BadRequest("Data empty");
 
             if (AnyByName(userEntities.UserName))
             {
