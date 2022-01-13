@@ -1,13 +1,23 @@
 .checkbox-label{
     margin-right: 30px;
+    cursor: pointer;
 }
 
 input{
     margin-right: 7px;
+    margin-top: -1px;
+    cursor: pointer;
+    vertical-align: middle;
 }
 
 img{
     margin-top: -1px !important;
 }
+
+.checkbox-div {
+    text-align: center;
+    display: inline;
+}
+
 
 

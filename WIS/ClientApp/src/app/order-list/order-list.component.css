@@ -9,8 +9,21 @@ button {
 
 .order-status-input{
     width: 80px;
+    /* border-color: #efefef; */
+    /* border-radius: 3px; */
 }
 
 thead {
     color: #337AB7;
+}
+
+.card {
+    border-color: #efefef;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: #dddddd;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
