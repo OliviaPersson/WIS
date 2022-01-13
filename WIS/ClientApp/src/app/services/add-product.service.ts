@@ -21,8 +21,7 @@ export class AddProductService {
             ProductCode: this.productForm.value.ProductCode,
             Quantity: this.productForm.value.Quantity,
             OrderAmount: this.productForm.value.OrderAmount,
-            Description: this.productForm.value.Description,
-            OrderDate: "2022-01-12T13:34:00.000"           
+            Description: this.productForm.value.Description                   
         };
         console.log("body", body);
         return this.http.post<any>('/Product/AddProduct', body);    
