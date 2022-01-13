@@ -23,7 +23,7 @@
                     <td>{{product.productName}}</td>
                     <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td> 
                     <td *ngIf="isAdmin">
-                        <input class="order-status-input" type="number" [(ngModel)]="product.orderAmount">
+                        <input class="order-status-input" type="number" min="0" [(ngModel)]="product.orderAmount">
                     </td>
                     <td>{{product.quantity}}</td>
                     <td>{{product.description}}</td>
@@ -48,12 +48,12 @@
                 </tr>
             </tbody>
             </table>
+            <div class="form-group" *ngIf="isAdmin">
+                <button style="float: right !important;" [disabled]="loading" class="btn btn-primary" (click)="placeOrder(filteredProducts)">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Place Order
+                </button>
+            </div>
         </div>
     </div>
-</div>
-<div class="form-group" *ngIf="isAdmin">
-    <button [disabled]="loading" class="btn btn-primary" (click)="placeOrder(filteredProducts)">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-        Place Order
-    </button>
 </div>

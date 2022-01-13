@@ -22,8 +22,8 @@ thead {
 }
 
 .card-header {
-    background-color: #fff;
-    border-bottom: #dddddd;
+    background-color: #fff; 
+    /* border-bottom: #dddddd; */
     font-weight: bold;
     letter-spacing: 3px;
-}
+}   

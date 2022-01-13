@@ -19,7 +19,7 @@ export class OrderListComponent implements OnInit{
     sub!: Subscription;
     imageWidth: number = 15;
     imageMargin: number = 2;
-    removeImageWidth: number = 22;
+    removeImageWidth: number = 17;
     errorMessage: string = '';
     pageTitle: string = 'Order List';
     isAdmin: boolean;
