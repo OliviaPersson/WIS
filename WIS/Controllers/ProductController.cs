@@ -66,6 +66,8 @@ namespace WIS.Controllers
         [HttpPost("AddProduct")]
         public IActionResult AddProduct(Product productEntities)
         {
+            productEntities.OrderDate = DateTime.Now;
+
             // Creates the database if not exists
             myDbContext.Database.EnsureCreated();
 
@@ -81,7 +83,6 @@ namespace WIS.Controllers
                 {
                     if (!ModelState.IsValid)
                         return BadRequest("Invalid data.");
-
                     myDbContext.Add(productEntities);
                     myDbContext.SaveChanges();
                     return Ok();
