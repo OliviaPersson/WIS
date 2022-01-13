@@ -37,6 +37,11 @@
               >Registration</a
             >
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="isAdmin">
+            <a class="nav-link text-dark" [routerLink]="['/addproduct']"
+              >Add Product</a
+            >
+          </li>
           <li class="nav-item" 
               [routerLinkActive]="['link-active']" 
               (click)="onSubmit()">

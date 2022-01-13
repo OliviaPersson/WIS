@@ -3,26 +3,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-
+import { AddProductService } from '../services/add-product.service';
 import { AlertService } from '../services/alert.service';
 import { AuthenticationService } from '../services/authentication.service';
-import { RegistrationService } from '../services/registration.service';
 import { UserService } from '../services/user.service';
 
 @Component({
-selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+selector: './add-product',
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.css']
 })
 
-export class RegistrationComponent implements OnInit {
+export class AddProductComponent implements OnInit {
 
   loading = false;
   submitted = false;
   
 
   constructor(
-    private service: RegistrationService,
+    private productService: AddProductService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router, 
@@ -34,39 +33,39 @@ export class RegistrationComponent implements OnInit {
   
   ngOnInit(): void {
     this.alertService.clear();
-    this.service.formModel.reset();
+    this.productService.productForm.reset();
   }
 
 // convenience getter for easy access to form fields
-get f() { return this.service.formModel.controls; }
+get f() { return this.productService.productForm.controls; }
 
 
 
   onSubmit() {
     this.submitted = true;
-
+    
     // reset alerts on submit
     this.alertService.clear();
-
+    console.log("Stop1");
     // stop here if form is invalid
-    if (this.service.formModel.invalid) {
+    if (this.productService.productForm.invalid) {
         return;
     }
-
+    console.log("Stop1");
     this.loading = true;
-    this.service.register()
+    this.productService.postProduct()
     .pipe(first())
     .subscribe({
       next: () => {
-          this.alertService.success('Registration successful', true);
+          this.alertService.success('Adding Product successful', true);
           this.loading = false;
-          this.service.formModel.reset();
+          this.productService.productForm.reset();
           this.submitted = false;
-          this.router.navigate(['../registration'], { relativeTo: this.route });
+          this.router.navigate(['../addproduct'], { relativeTo: this.route });
       }, 
       error: error => {
         if (error.status === 400) {
-          this.alertService.error("Username already exist, please try again.");
+          this.alertService.error("Product Code already exist, please try again.");
         }
         else {
           this.alertService.error("An unexpected error occurred, please try again.");
@@ -74,6 +73,6 @@ get f() { return this.service.formModel.controls; }
         this.loading = false;
       }
     });
-  }    
+  }   
 }
   
