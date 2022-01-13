@@ -2,18 +2,24 @@
     <form>
         <!-- All Form elements or Input fields goes here -->
         <div class="checkbox">
-            <label class="checkbox-label"><input type="checkbox" (click)="Checked('manyInStockChecked')" [disabled]="checkboxesDisabled">
+            <div class="checkbox-div">
+                <label class="checkbox-label"><input type="checkbox" (click)="Checked('manyInStockChecked')" [disabled]="checkboxesDisabled">
                 <img src="../../assets/images/green_circle.png"
                     [style.width.px]='imageWidth'>
-                    Many in stock</label>
-            <label class="checkbox-label"><input type="checkbox" (click)="Checked('fewInStockChecked')" [disabled]="checkboxesDisabled">
+                Many in stock</label>
+            </div>
+            <div class="checkbox-div">
+                <label class="checkbox-label"><input type="checkbox" (click)="Checked('fewInStockChecked')" [disabled]="checkboxesDisabled">
                 <img src="../../assets/images/orange_circle.png"
                     [style.width.px]='imageWidth'>
                 Few in stock</label>
-            <label class="checkbox-label"><input type="checkbox" (click)="Checked('outOfStockChecked')" [disabled]="checkboxesDisabled">
+            </div>
+            <div class="checkbox-div">
+                <label class="checkbox-label"><input type="checkbox" (click)="Checked('outOfStockChecked')" [disabled]="checkboxesDisabled">
                 <img src="../../assets/images/red_circle.png"
                     [style.width.px]='imageWidth'>
                 Out of stock</label>
+            </div>
         </div>
     </form>
 </div>
