@@ -15,8 +15,8 @@
 }  */
 
 .card-header {
-  background-color: #fff;
-  border-bottom: #dddddd;
+  background-color: #fff; 
+  border-color: #dddddd; 
   font-weight: bold;
   letter-spacing: 3px; 
 }
@@ -24,8 +24,8 @@
 .card {
   margin: auto;
   width: 100%;
-  border-color: #efefef;
-}
+  border-color: #efefef; 
+} 
 
 input {
   border-color: #dddddd;

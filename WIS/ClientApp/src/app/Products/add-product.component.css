@@ -14,4 +14,21 @@
   font-weight: bold;
 }  */
  
+.card-header {
+  background-color: #fff;
+  /* border-bottom: #dddddd; */
+  font-weight: bold;
+  letter-spacing: 3px; 
+}
+
+.card {
+  margin: auto;
+  width: 100%;
+  border-color: #efefef;
+}
+
+input {
+  border-color: #dddddd;
+  box-shadow: 0 0.25rem 0.75rem #0000000d;
+} 
     
