@@ -63,5 +63,39 @@ namespace WIS.Controllers
                 return BadRequest(ex);
             }
         }
+        [HttpPost("AddProduct")]
+        public IActionResult AddProduct(Product productEntities)
+        {
+            // Creates the database if not exists
+            myDbContext.Database.EnsureCreated();
+
+            if (productEntities == null) return BadRequest("Data empty");
+
+            if (AnyByCode(productEntities.ProductCode))
+            {
+                return BadRequest("The specified product already exist");
+            }
+            else
+            {
+                try
+                {
+                    if (!ModelState.IsValid)
+                        return BadRequest("Invalid data.");
+
+                    myDbContext.Add(productEntities);
+                    myDbContext.SaveChanges();
+                    return Ok();
+
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex);
+                }
+            }
+        }
+        public bool AnyByCode(string productCode)
+        {
+            return myDbContext.Products.Any(x => x.ProductCode == productCode);
+        }
     }
 }

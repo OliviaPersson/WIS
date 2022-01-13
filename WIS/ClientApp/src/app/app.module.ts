@@ -23,6 +23,8 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProductService } from './services/add-product.service';
+import { AddProductComponent } from './Products/add-product.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegistrationComponent,
     StockStatusFiltering,
     OrderListComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -55,10 +58,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: 'orderlist', component: OrderListComponent, pathMatch: 'full', canActivate: [AuthGuardService] },
       { path: 'counter', component: CounterComponent },
       { path: 'registration', component: RegistrationComponent, canActivate: [AuthGuardAdminService, AuthGuardService]},
+      { path: 'addproduct', component: AddProductComponent, canActivate: [AuthGuardAdminService, AuthGuardService]},
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [AuthGuardService, RegistrationService, AuthGuardAdminService],
+  providers: [AuthGuardService, RegistrationService, AuthGuardAdminService, AddProductService],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmationDialogComponent
