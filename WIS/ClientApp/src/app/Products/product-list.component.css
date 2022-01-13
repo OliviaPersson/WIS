@@ -1,9 +1,23 @@
 thead {
     color: #337AB7;
+
 }
 
 .row {
     margin-top: 5px;
     margin-bottom: 25px;
 }
+
+.card-header {
+    background-color: #fff;
+    border-bottom: #dddddd;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.card {
+/*     margin: auto;
+    width: 100%; */
+    border-color: #efefef;
+  }
 
