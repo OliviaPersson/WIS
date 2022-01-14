@@ -21,14 +21,14 @@
             </div>
             <div class="form-group required">
                 <label for="Quantity">Quantity</label>
-                <input type="number" min="0" formControlName="Quantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Quantity.errors }" />
+                <input type="number" min="0" formControlName="Quantity" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Quantity.errors }" (keypress)="isNumberKey($event)" />
                 <div *ngIf="submitted && f.Quantity.errors" class="invalid-feedback">
                     <div *ngIf="f.Quantity.errors.required">Quantity is required</div>
                 </div>
             </div>
             <div class="form-group required">
                 <label for="OrderAmount">Order Amount</label>
-                <input type="number" min="0"  formControlName="OrderAmount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.OrderAmount.errors }" />
+                <input type="number" min="0"  formControlName="OrderAmount" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.OrderAmount.errors }" (keypress)="isNumberKey($event)" />
                 <div *ngIf="submitted && f.OrderAmount.errors" class="invalid-feedback">
                     <div *ngIf="f.OrderAmount.errors.required">Order Amount is required</div>
                 </div>
