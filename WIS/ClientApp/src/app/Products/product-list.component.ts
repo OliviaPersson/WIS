@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
     sub!: Subscription;
     checkboxesDisabled: boolean;
     seachboxDisabled: boolean;
+    productClicked: boolean = false;
 
     private _listFilter: string = '';
 
@@ -49,9 +50,29 @@ export class ProductListComponent implements OnInit, OnDestroy{
             next: products => {
                 this.products = products;
                 this.filteredProducts = this.products;
+                this.sortProducts();
             },
             error: err => this.errorMessage = err
         });
+
+    }
+
+    sortProducts() {
+        if(!this.productClicked) {
+            this.filteredProducts.sort(function(a, b){
+                if(a.productName.toLowerCase() < b.productName.toLowerCase()) { return -1; }
+                if(a.productName.toLowerCase() > b.productName.toLowerCase()) { return 1; }
+                return 0;
+            })
+            this.productClicked = true;
+        } else {
+            this.filteredProducts.sort(function(a, b){
+                if(a.productName.toLowerCase() > b.productName.toLowerCase()) { return -1; }
+                if(a.productName.toLowerCase() < b.productName.toLowerCase()) { return 1; }
+                return 0;
+            })
+            this.productClicked = false;
+        }
     }
 
     ngOnDestroy() {

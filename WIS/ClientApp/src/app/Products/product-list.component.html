@@ -19,7 +19,7 @@
             <table class='table' *ngIf='products.length'>
               <thead>
                 <tr>
-                  <th>Product</th>
+                  <th><span style="cursor: pointer;" (click)='sortProducts()'>Product</span></th>
                   <th>Code</th>
                   <th>Quantity</th>
                   <th>Description</th>
