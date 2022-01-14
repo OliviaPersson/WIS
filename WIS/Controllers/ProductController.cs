@@ -75,7 +75,7 @@ namespace WIS.Controllers
 
             if (AnyByCode(productEntities.ProductCode))
             {
-                return BadRequest("The specified product already exist");
+                return BadRequest("The specified product code already exist");
             }
             else
             {

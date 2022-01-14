@@ -64,12 +64,7 @@ get f() { return this.productService.productForm.controls; }
           this.router.navigate(['../addproduct'], { relativeTo: this.route });
       }, 
       error: error => {
-        if (error.status === 400) {
-          this.alertService.error("Product Code already exist, please try again.");
-        }
-        else {
-          this.alertService.error("An unexpected error occurred, please try again.");
-        }        
+        this.alertService.error(error.error);
         this.loading = false;
       }
     });

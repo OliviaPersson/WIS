@@ -58,6 +58,7 @@ export class OrderListComponent implements OnInit{
             let condition = product.quantity >= 30;
             return !condition;
         })
+        this.filteredProducts.sort(function(a, b){return b.quantity - a.quantity});
     }
 
     deleteProduct(elem){       

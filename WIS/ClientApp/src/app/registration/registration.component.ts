@@ -65,12 +65,7 @@ get f() { return this.service.formModel.controls; }
           this.router.navigate(['../registration'], { relativeTo: this.route });
       }, 
       error: error => {
-        if (error.status === 400) {
-          this.alertService.error("Username already exist, please try again.");
-        }
-        else {
-          this.alertService.error("An unexpected error occurred, please try again.");
-        }        
+        this.alertService.error(error.error);
         this.loading = false;
       }
     });
