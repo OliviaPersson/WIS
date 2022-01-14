@@ -23,7 +23,7 @@
                     <td>{{product.productName}}</td>
                     <td>{{product.productCode | lowercase | convertToSpaces:'-'}}</td> 
                     <td *ngIf="isAdmin">
-                        <input class="order-status-input" type="number" min="0" [(ngModel)]="product.orderAmount">
+                        <input class="order-status-input" type="number" min="0" [(ngModel)]="product.orderAmount" (keypress)="isNumberKey($event)">
                     </td>
                     <td>{{product.quantity}}</td>
                     <td>{{product.description}}</td>
